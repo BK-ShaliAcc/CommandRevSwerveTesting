@@ -121,9 +121,9 @@ class ModuleConstants:
     kfrontLeft_turn_inverted = True
     kfrontRight_drive_inverted = False
     kfrontRight_turn_inverted = True
-    kbackLeft_drive_inverted = False
+    kbackLeft_drive_inverted = True
     kbackLeft_turn_inverted = True
-    kbackRight_drive_inverted = False
+    kbackRight_drive_inverted = True
     kbackRight_turn_inverted = True
 
     # If the encoders are inverted
