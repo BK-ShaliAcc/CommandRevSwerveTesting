@@ -50,7 +50,7 @@ class DriveConstants:
     kFrontLeftDrivingCanId = 11
     kFrontLeftTurningCanId = 12
     kFrontLeftCANCoderID = 13
-    kFrontLeftRotationOffset = 200.92
+    kFrontLeftRotationOffset = 160
 
     kFrontRightDrivingCanId = 21
     kFrontRightTurningCanId = 22

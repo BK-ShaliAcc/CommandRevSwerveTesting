@@ -42,7 +42,7 @@ class SwerveModule_CANCoder(SwerveModule):
         # Sets the position of the relative encoder to the abs encoder.
         self.turningEncoder = self.turningSparkMax.getEncoder()
         rotation_value = self.turning_AbsEncoder.get_absolute_position().value # gets value
-        deg_value = rotation_value*360 # converts to degrees
+        deg_value = -rotation_value*360 # converts to degrees
         adj_deg_value = deg_value - moduleRotationOffset # applies offset
         rad_value = -adj_deg_value * math.pi/180 # converts to radians
         self.turningEncoder.setPosition(rad_value) # sets the position
