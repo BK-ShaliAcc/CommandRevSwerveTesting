@@ -50,9 +50,9 @@ class RobotContainer:
         self.robotDrive.setDefaultCommand(
             SwerveDrive(
                 self.robotDrive,
-                forwardSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kLeftY),
-                leftSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kLeftX),
-                rotationSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kRightX),
+                forwardSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kLeftY)*0.4,
+                leftSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kLeftX)*0.4,
+                rotationSpeed=lambda: -self.driverController.getRawAxis(XboxController.Axis.kRightX)*0.4,
                 deadband=OIConstants.kDriveDeadband,
                 fieldRelative=True,
                 rateLimit=True,

@@ -47,24 +47,24 @@ class DriveConstants:
 
 
     # IDs and Offsets for each Swerve Module
-    kFrontLeftDrivingCanId = 11
-    kFrontLeftTurningCanId = 12
-    kFrontLeftCANCoderID = 13
+    kFrontLeftDrivingCanId = 1
+    kFrontLeftTurningCanId = 2
+    kFrontLeftCANCoderID = 3
     kFrontLeftRotationOffset = 160
 
-    kFrontRightDrivingCanId = 21
-    kFrontRightTurningCanId = 22
-    kFrontRightCANCoderID = None
+    kFrontRightDrivingCanId  = 4
+    kFrontRightTurningCanId = 5
+    kFrontRightCANCoderID = 6
     kFrontRightRotationOffset = 0
 
-    kBackLeftDrivingCanId = 31
-    kBackLeftTurningCanId = 32
-    kBackLeftCANCoderID = None
+    kBackLeftDrivingCanId = 7
+    kBackLeftTurningCanId = 8
+    kBackLeftCANCoderID = 9
     kBackLeftRotationOffset = 0
 
-    kBackRightDrivingCanId = 41
-    kBackRightTurningCanId = 42
-    kBackRightCANCoderID = None
+    kBackRightDrivingCanId = 10
+    kBackRightTurningCanId = 11
+    kBackRightCANCoderID = 12
     kBackRightRotationOffset = 0
 
     # Whether the gyro should be reversed
