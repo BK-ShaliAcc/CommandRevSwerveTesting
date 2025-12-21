@@ -47,30 +47,33 @@ class DriveSubsystem(Subsystem):
             motorControllerType=SparkMax,
         )
 
-        self.frontRight = SwerveModule(
+        self.frontRight = SwerveModule_CANCoder(
             DriveConstants.kFrontRightDrivingCanId,
             DriveConstants.kFrontRightTurningCanId,
             DriveConstants.kFrontRightRotationOffset,
+            DriveConstants.kFrontRightCANCoderID,
             turnMotorInverted=ModuleConstants.kfrontRight_turn_inverted,
             driveMotorInverted=ModuleConstants.kfrontRight_drive_inverted,
             encoderInverted=ModuleConstants.kfrontRight_encoder_inverted,
             motorControllerType=SparkMax,
         )
 
-        self.backLeft = SwerveModule(
+        self.backLeft = SwerveModule_CANCoder(
             DriveConstants.kBackLeftDrivingCanId,
             DriveConstants.kBackLeftTurningCanId,
             DriveConstants.kBackLeftRotationOffset,
+            DriveConstants.kBackLeftCANCoderID,
             turnMotorInverted=ModuleConstants.kbackLeft_turn_inverted,
             driveMotorInverted=ModuleConstants.kbackLeft_drive_inverted,
             encoderInverted=ModuleConstants.kbackLeft_encoder_inverted,
             motorControllerType=SparkMax,
         )
 
-        self.backRight = SwerveModule(
+        self.backRight = SwerveModule_CANCoder(
             DriveConstants.kBackRightDrivingCanId,
             DriveConstants.kBackRightTurningCanId,
             DriveConstants.kBackRightRotationOffset,
+            DriveConstants.kBackRightCANCoderID,
             turnMotorInverted=ModuleConstants.kbackRight_turn_inverted,
             driveMotorInverted=ModuleConstants.kbackRight_drive_inverted,
             encoderInverted=ModuleConstants.kbackRight_encoder_inverted,
@@ -158,6 +161,8 @@ class DriveSubsystem(Subsystem):
         # TODO: WHY DO THEY NEED TO BE REVERSED
         SmartDashboard.putNumber("pose heading", -pose.rotation().degrees())
         SmartDashboard.putNumber("gyro heading", -self.getGyroHeading().degrees())
+        SmartDashboard.putNumber("gyro pitch", self.gyro.getPitch())
+        SmartDashboard.putNumber("gyro roll", self.gyro.getRoll())
 
         # Put the encoders  of all four modules #TODO: WHY DO THEY NEED TO BE REVERSED
         SmartDashboard.putNumber("fl", (self.frontLeft.turningEncoder.getPosition() * -180 / math.pi))
