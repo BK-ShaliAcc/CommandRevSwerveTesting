@@ -23,7 +23,8 @@ class NeoMotorConstants:
 class DriveConstants:
     # Driving Parameters - Note that these are not the maximum capable speeds of
     # the robot, rather the allowed maximum speeds
-    kMaxSpeedMetersPerSecond = 4.8
+    #Changed to 3.8 from 4.8
+    kMaxSpeedMetersPerSecond = 3.8
     kMaxAngularSpeed = math.tau  # radians per second
 
     kDirectionSlewRate = 1.2  # radians per second
@@ -50,22 +51,22 @@ class DriveConstants:
     kFrontLeftTurningCanId = 1
     kFrontLeftDrivingCanId = 2
     kFrontLeftCANCoderID = 11
-    kFrontLeftRotationOffset = 74.4
+    kFrontLeftRotationOffset = 280
 
     kFrontRightTurningCanId  = 3
     kFrontRightDrivingCanId = 4
     kFrontRightCANCoderID = 12
-    kFrontRightRotationOffset = 308.5
+    kFrontRightRotationOffset = 314
 
     kBackLeftTurningCanId = 7
     kBackLeftDrivingCanId = 8
     kBackLeftCANCoderID = 14
-    kBackLeftRotationOffset = 73.3
+    kBackLeftRotationOffset = 249
 
     kBackRightTurningCanId = 5
     kBackRightDrivingCanId = 6
     kBackRightCANCoderID = 13
-    kBackRightRotationOffset = 294.3
+    kBackRightRotationOffset = 294
 
     # Whether the gyro should be reversed
     kGyroReversed = -1  # can be +1 if not flipped (affects field-relative driving)
@@ -117,11 +118,11 @@ class ModuleConstants:
     #TODO: DRIVE INVERTED: DO WHEN WE FIX SWERVE
 
     # Whether the motors are inverted
-    kfrontLeft_drive_inverted = False
+    kfrontLeft_drive_inverted = True
     kfrontLeft_turn_inverted = True
     kfrontRight_drive_inverted = True
     kfrontRight_turn_inverted = True
-    kbackLeft_drive_inverted = True
+    kbackLeft_drive_inverted = False
     kbackLeft_turn_inverted = True
     kbackRight_drive_inverted = False
     kbackRight_turn_inverted = True
@@ -196,7 +197,7 @@ class AutoMovementConstants:
 class OIConstants:
     # Constants for teh controller go here
     kDriverControllerPort = 0
-    kDriveDeadband = 0.05
+    kDriveDeadband = 0.1
 
 
 class PoseBoundariesConstants:
