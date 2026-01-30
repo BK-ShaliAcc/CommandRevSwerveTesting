@@ -73,16 +73,14 @@ class RobotContainer:
         yButton = self.driverController.button(XboxController.Button.kY)
         yButton.onTrue(ResetSwerveFront(self.robotDrive))
 
+        aButton = self.driverController.button(XboxController.Button.kA)
+        aButton.onTrue(RunCommand(self.robotDrive.resetEncoders_to_abs, self.robotDrive))
+
+
         # When you press the right bumper set the wheels to x formation
         rbButton = self.driverController.button(XboxController.Button.kRightBumper)
         rbButton.onTrue(RunCommand(self.robotDrive.setX, self.robotDrive))
 
-        # When you hold a: run the PathToPose or PathToPath command depending on what I have
-        aButton = self.driverController.button(XboxController.Button.kA)
-        aButton.onTrue(self.PathToPose)
-        #aButton.onTrue(self.PathToPath)
-        # When you let go cancel the command
-        aButton.onFalse(RunCommand(lambda: CommandScheduler.getInstance().cancelAll()))
 
         # while I hold b aim to the given direction
         bButton = self.driverController.button(XboxController.Button.kB)

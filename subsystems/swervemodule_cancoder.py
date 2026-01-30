@@ -34,18 +34,28 @@ class SwerveModule_CANCoder(SwerveModule):
         # Creates the turning PID controller
         self.turningPIDController = self.turningSparkMax.getClosedLoopController()
 
-
+        self.moduleRotationOffset = moduleRotationOffset
         # Gets CANCoder Abs Encoder
         self.canCoder_id = canCoder_id
         self.turning_AbsEncoder = CANcoder(canCoder_id)
 
+
+        # Sets the position of the relative encoder to the abs encoder.
+        self.turningEncoder = self.turningSparkMax.getEncoder()
+        rotation_value = self.turning_AbsEncoder.get_absolute_position().value # gets value
+        deg_value = rotation_value*360 # converts to degrees
+        adj_deg_value = deg_value - moduleRotationOffset # applies offset
+        rad_value = adj_deg_value * math.pi/180 # converts to radians
+        self.turningEncoder.setPosition(rad_value)
+
+        # Uses the new encoder position to write the initial desired state to the current angle
+        self.desiredState.angle = Rotation2d(self.turningEncoder.getPosition() - self.moduleRotationOffset)
+
+    def set_encoders_to_abs(self):
         # Sets the position of the relative encoder to the abs encoder.
         self.turningEncoder = self.turningSparkMax.getEncoder()
         rotation_value = self.turning_AbsEncoder.get_absolute_position().value # gets value
         deg_value = -rotation_value*360 # converts to degrees
-        adj_deg_value = deg_value - moduleRotationOffset # applies offset
-        rad_value = -adj_deg_value * math.pi/180 # converts to radians
+        adj_deg_value = deg_value - self.moduleRotationOffset # applies offset
+        rad_value = adj_deg_value * math.pi/180 # converts to radians
         self.turningEncoder.setPosition(rad_value) # sets the position
-
-        # Uses the new encoder position to write the initial desired state to the current angle
-        self.desiredState.angle = Rotation2d(self.turningEncoder.getPosition() - self.moduleRotationOffset)

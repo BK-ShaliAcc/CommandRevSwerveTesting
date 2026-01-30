@@ -17,12 +17,12 @@ from wpilib import SmartDashboard, Field2d, DriverStation
 from constants import DriveConstants, ModuleConstants
 import swerveutils
 from subsystems.swervemodule_cancoder import SwerveModule_CANCoder
-from subsystems.swervemodule import SwerveModule
 from rev import SparkMax
 import navx
 from pathplannerlib.auto import AutoBuilder
 from pathplannerlib.controller import PPHolonomicDriveController
 from pathplannerlib.config import RobotConfig, PIDConstants
+
 
 
 class DriveSubsystem(Subsystem):
@@ -164,11 +164,16 @@ class DriveSubsystem(Subsystem):
         SmartDashboard.putNumber("gyro pitch", self.gyro.getPitch())
         SmartDashboard.putNumber("gyro roll", self.gyro.getRoll())
 
-        # Put the encoders  of all four modules #TODO: WHY DO THEY NEED TO BE REVERSED
-        SmartDashboard.putNumber("fl", (self.frontLeft.turningEncoder.getPosition() * -180 / math.pi))
-        SmartDashboard.putNumber("fr", (self.frontRight.turningEncoder.getPosition() * -180 / math.pi))
-        SmartDashboard.putNumber("bl", (self.backLeft.turningEncoder.getPosition() * -180 / math.pi))
-        SmartDashboard.putNumber("br", (self.backRight.turningEncoder.getPosition() * -180 / math.pi))
+        # SmartDashboard.putNumber("fl abs pos", ((self.frontLeft.turning_AbsEncoder.get_absolute_position().value*360) - self.frontLeft.moduleRotationOffset))
+        # SmartDashboard.putNumber("bl abs pos", ((self.backLeft.turning_AbsEncoder.get_absolute_position().value*360) - self.backLeft.moduleRotationOffset))
+        # SmartDashboard.putNumber("fr abs pos", ((self.frontRight.turning_AbsEncoder.get_absolute_position().value * 360) - self.frontRight.moduleRotationOffset))
+        # SmartDashboard.putNumber("br abs pos", ((self.backRight.turning_AbsEncoder.get_absolute_position().value * 360) - self.backRight.moduleRotationOffset))
+
+        # Put the encoders  of all four modules
+        SmartDashboard.putNumber("fl", (self.frontLeft.turningEncoder.getPosition() * 180 / math.pi))
+        SmartDashboard.putNumber("fr", (self.frontRight.turningEncoder.getPosition() * 180 / math.pi))
+        SmartDashboard.putNumber("bl", (self.backLeft.turningEncoder.getPosition() * 180 / math.pi))
+        SmartDashboard.putNumber("br", (self.backRight.turningEncoder.getPosition() * 180 / math.pi))
 
         self.field.setRobotPose(pose) # Sets the position of the robot on the field to the pose
 
@@ -428,6 +433,13 @@ class DriveSubsystem(Subsystem):
         self.backLeft.resetEncoders()
         self.frontRight.resetEncoders()
         self.backRight.resetEncoders()
+
+
+    def resetEncoders_to_abs(self):
+        self.frontLeft.set_encoders_to_abs()
+        self.backLeft.set_encoders_to_abs()
+        self.frontRight.set_encoders_to_abs()
+        self.backRight.set_encoders_to_abs()
 
     def getGyroHeading(self) -> Rotation2d:
         """
